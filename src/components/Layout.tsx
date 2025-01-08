@@ -10,7 +10,7 @@ const Layout = () => {
     <div className="min-h-screen flex flex-col">
       <Toaster position="top-right" />
       <Navbar />
-      <div className="flex-grow container mx-auto px-4 py-8">
+      <div className="flex-grow container mx-auto px-4 py-4">
         <AdComponent slot="top-banner" />
         <Outlet />
         <AdComponent slot="bottom-banner" />

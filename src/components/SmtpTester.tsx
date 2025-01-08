@@ -56,105 +56,111 @@ const SmtpTester = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-lg">
-      <h1 className="text-2xl font-bold mb-6">SMTP Tester</h1>
-      <form onSubmit={handleSubmit} className="space-y-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-            <label className="block text-sm font-medium mb-2">Host</label>
-            <input
-              type="text"
-              name="host"
-              value={config.host}
-              onChange={handleChange}
-              className="w-full p-2 border rounded"
-              required
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium mb-2">Port</label>
-            <input
-              type="text"
-              name="port"
-              value={config.port}
-              onChange={handleChange}
-              className="w-full p-2 border rounded"
-              required
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium mb-2">Username</label>
-            <input
-              type="text"
-              name="username"
-              value={config.username}
-              onChange={handleChange}
-              className="w-full p-2 border rounded"
-              required
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium mb-2">Password</label>
-            <input
-              type="password"
-              name="password"
-              value={config.password}
-              onChange={handleChange}
-              className="w-full p-2 border rounded"
-              required
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium mb-2">From</label>
-            <input
-              type="email"
-              name="from"
-              value={config.from}
-              onChange={handleChange}
-              className="w-full p-2 border rounded"
-              required
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium mb-2">To</label>
-            <input
-              type="email"
-              name="to"
-              value={config.to}
-              onChange={handleChange}
-              className="w-full p-2 border rounded"
-              required
-            />
-          </div>
+    <div className="max-w-2xl mx-auto">
+      <h1 className="text-2xl font-bold mb-4">SMTP Tester</h1>
+      <form onSubmit={handleSubmit} className="space-y-3">
+        <div>
+          <label htmlFor="host" className="block">Host</label>
+          <input
+            id="host"
+            type="text"
+            name="host"
+            value={config.host}
+            onChange={handleChange}
+            className="w-full border p-1"
+            required
+          />
         </div>
         <div>
-          <label className="block text-sm font-medium mb-2">Subject</label>
+          <label htmlFor="port" className="block">Port</label>
           <input
+            id="port"
+            type="text"
+            name="port"
+            value={config.port}
+            onChange={handleChange}
+            className="w-full border p-1"
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="username" className="block">Username</label>
+          <input
+            id="username"
+            type="text"
+            name="username"
+            value={config.username}
+            onChange={handleChange}
+            className="w-full border p-1"
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="password" className="block">Password</label>
+          <input
+            id="password"
+            type="password"
+            name="password"
+            value={config.password}
+            onChange={handleChange}
+            className="w-full border p-1"
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="from" className="block">From</label>
+          <input
+            id="from"
+            type="email"
+            name="from"
+            value={config.from}
+            onChange={handleChange}
+            className="w-full border p-1"
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="to" className="block">To</label>
+          <input
+            id="to"
+            type="email"
+            name="to"
+            value={config.to}
+            onChange={handleChange}
+            className="w-full border p-1"
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="subject" className="block">Subject</label>
+          <input
+            id="subject"
             type="text"
             name="subject"
             value={config.subject}
             onChange={handleChange}
-            className="w-full p-2 border rounded"
+            className="w-full border p-1"
             required
           />
         </div>
         <div>
-          <label className="block text-sm font-medium mb-2">Message</label>
+          <label htmlFor="message" className="block">Message</label>
           <textarea
+            id="message"
             name="message"
             value={config.message}
             onChange={handleChange}
-            className="w-full p-2 border rounded h-32"
+            className="w-full border p-1 h-24"
             required
           />
         </div>
-        <div className="text-right">
+        <div>
           <button
             type="submit"
             disabled={loading}
-            className="bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600 disabled:opacity-50"
+            className="bg-blue-500 text-white px-4 py-1 rounded"
           >
-            {loading ? 'Testing...' : 'Test SMTP'}
+            Test SMTP
           </button>
         </div>
       </form>
