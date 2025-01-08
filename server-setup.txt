@@ -1,0 +1,124 @@
+SMTP Tester - Server Setup Guide
+===============================
+
+1. System Requirements
+---------------------
+- Ubuntu Server 20.04 LTS or newer
+- PHP 8.0 or newer
+- Apache2
+- Composer
+- Node.js 16+ and npm
+
+2. Initial Server Setup
+----------------------
+# Update system
+sudo apt update
+sudo apt upgrade -y
+
+# Install required packages
+sudo apt install apache2 php php-cli php-fpm php-json php-common php-mysql php-zip php-gd php-mbstring php-curl php-xml php-pear php-bcmath unzip curl -y
+
+# Install Node.js
+curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+sudo apt install nodejs -y
+
+# Install Composer
+curl -sS https://getcomposer.org/installer | php
+sudo mv composer.phar /usr/local/bin/composer
+sudo chmod +x /usr/local/bin/composer
+
+3. Apache Configuration
+----------------------
+# Enable required Apache modules
+sudo a2enmod rewrite
+sudo a2enmod headers
+sudo systemctl restart apache2
+
+4. Project Setup
+---------------
+# Clone the repository
+git clone [your-repository-url]
+cd [project-directory]
+
+# Install PHP dependencies
+composer install
+
+# Install Node.js dependencies
+npm install
+
+# Build the project
+npm run build
+
+5. Apache Virtual Host
+---------------------
+# Create a new virtual host configuration
+sudo nano /etc/apache2/sites-available/smtp-tester.conf
+
+# Add the following configuration (modify as needed):
+<VirtualHost *:80>
+    ServerName your-domain.com
+    DocumentRoot /var/www/smtp-tester/public
+    
+    <Directory /var/www/smtp-tester/public>
+        Options Indexes FollowSymLinks
+        AllowOverride All
+        Require all granted
+    </Directory>
+    
+    ErrorLog ${APACHE_LOG_DIR}/smtp-tester-error.log
+    CustomLog ${APACHE_LOG_DIR}/smtp-tester-access.log combined
+</VirtualHost>
+
+# Enable the site
+sudo a2ensite smtp-tester.conf
+sudo systemctl restart apache2
+
+6. File Permissions
+------------------
+sudo chown -R www-data:www-data /var/www/smtp-tester
+sudo chmod -R 755 /var/www/smtp-tester/storage
+
+7. Environment Configuration
+--------------------------
+# Copy the example environment file
+cp .env.example .env
+
+# Generate application key
+php artisan key:generate
+
+# Update .env file with your settings
+nano .env
+
+8. Final Steps
+-------------
+# Clear cache and optimize
+php artisan config:cache
+php artisan route:cache
+php artisan view:cache
+
+9. Security Considerations
+------------------------
+- Enable HTTPS using Let's Encrypt
+- Configure firewall rules
+- Set up regular backups
+- Keep system and packages updated
+
+10. Maintenance
+--------------
+# Regular updates
+sudo apt update
+sudo apt upgrade
+composer update
+npm update
+
+# Monitor logs
+tail -f /var/log/apache2/error.log
+
+11. Troubleshooting
+------------------
+- Check Apache error logs
+- Verify file permissions
+- Ensure all required PHP extensions are installed
+- Validate configuration files
+
+For support, contact: [your-support-email]
