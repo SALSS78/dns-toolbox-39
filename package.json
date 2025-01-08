@@ -3,3 +3,8 @@
     "react-hot-toast": "^2.5.1"
   }
 }
+{
+  "scripts": {
+    "build:dev": "vite build --mode development"
+  }
+}
